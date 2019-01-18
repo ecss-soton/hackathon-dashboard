@@ -1,10 +1,10 @@
-let backend = process.env.BACKEND;
+let backend = process.env.REACT_APP_BACKEND;
 if (backend == null || backend === "") {
-    backend = '//localhost:3001';
-  }
+  backend = '//localhost:3001';
+}
 
 export const Config = {
-    backend: backend,
-    event: 'CampusHack19',
-    pages: ['/shedule', '/map', '/sponsors']
+  backend: backend,
+  event: 'CampusHack19',
+  pages: ['/shedule', '/map', '/sponsors']
 };
