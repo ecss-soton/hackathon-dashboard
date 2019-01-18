@@ -34,12 +34,14 @@ class Right extends Component {
   componentDidMount() {
     this.interval_id = setInterval(() => this.change_page(), 20000);
     this.socket = this.context;
-    this.socket.on('connect', () => 
-      clearInterval(this.interval_id)
-    );
-    this.socket.on('disconnect', () => 
-      this.interval_id = setInterval(() => this.change_page(), 20000)
-    );
+    this.socket.on('connect', () => {
+      document.getElementById('offline').style.visibility = 'hidden';
+      clearInterval(this.interval_id);
+    });
+    this.socket.on('disconnect', () => {
+      document.getElementById('offline').style.visibility = 'visible';
+      this.interval_id = setInterval(() => this.change_page(), 20000);
+    });
     this.socket.on('change page', () => this.change_page());
     this.socket.on('right page', (msg) => this.change_page(msg));
 

@@ -36,7 +36,7 @@ class Left extends Component {
     this.socket.on('connect', () => {
       document.getElementById('offline').style.visibility = 'hidden';
       clearInterval(this.interval_id);
-  });
+    });
     this.socket.on('disconnect', () => {
       document.getElementById('offline').style.visibility = 'visible';
       this.interval_id = setInterval(() => this.change_page(), 20000);

@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import './App.css';
 
+import { Config } from './Config';
+
 import { HashRouter, Route, Switch } from "react-router-dom";
 import Left from './Left';
 import Right from './Right';
@@ -8,7 +10,7 @@ import Right from './Right';
 import * as io from 'socket.io-client';
 import SocketContext from './SocketContext';
 
-const socket = io('//localhost:3001')
+const socket = io(Config.backend)
 
 class App extends Component {
   componentDidMount() {
