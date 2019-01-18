@@ -6,19 +6,20 @@ class Hack extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      started: new Date() > Config.hack_start_time,
       time_left: this.get_time_left()
     };
   }
 
   get_time_left() {
-    let second_left = Math.floor((Config.hack_end_time - new Date()) / 1000);
-    let hrs = Math.floor(second_left / 3600);
-    let mins = Math.floor(second_left % 3600 / 60);
-    return `${hrs}:${mins}`
+    var time_left = new Date(1970, 0, 1); // Epoch
+    time_left.setSeconds(Math.floor((Config.hack_end_time - new Date()) / 1000) + 60);
+    return time_left.toLocaleString('en-GB', {hour: '2-digit', minute: '2-digit'});
   }
 
   tick() {
     this.setState({
+      started: new Date() > Config.hack_start_time,
       time_left: this.get_time_left()
     });
   }
@@ -32,9 +33,9 @@ class Hack extends Component {
   }
 
   render() {
-    return (
+    return !this.state.started ? null : (
       <span className={`${ this.props.className }`}>
-        Hack Ends in {this.state.time_left}
+        Hacking Ends in {this.state.time_left}
       </span>
     );
   }

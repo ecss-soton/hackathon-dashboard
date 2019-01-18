@@ -2,6 +2,12 @@ body {
   background: #eeeeee;
 }
 
+.main {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
 .topbar {
   display: flex;
   flex-wrap: nowrap;
@@ -19,4 +25,17 @@ body {
 
 .bg-ch {
   background: #6b0c19!important;
+}
+
+.content {
+  flex: 1;
+}
+
+footer {
+  font-size: 1.5rem;
+  color: #6b0c19;
+}
+
+footer a {
+  color: #6b0c19;
 }
