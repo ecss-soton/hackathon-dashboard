@@ -32,10 +32,22 @@ body {
 }
 
 footer {
+  display: flex;
+  align-content: center;
+  justify-content: space-between;
   font-size: 1.5rem;
   color: #6b0c19;
 }
 
+.footer-right {
+  justify-content: flex-end;
+}
+
 footer a {
   color: #6b0c19;
+}
+
+#offline {
+  align-items: center;
+  display: flex;
 }

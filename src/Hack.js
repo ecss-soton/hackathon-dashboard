@@ -1,35 +1,54 @@
 import React, { Component } from 'react';
 
-import { Config } from './Config'
+import SocketContext from './SocketContext';
 
 class Hack extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      started: new Date() > Config.hack_start_time,
-      time_left: this.get_time_left()
+      started: false,
+      time_left: null
     };
   }
 
   get_time_left() {
     var time_left = new Date(1970, 0, 1); // Epoch
-    time_left.setSeconds(Math.floor((Config.hack_end_time - new Date()) / 1000) + 60);
+    time_left.setSeconds(Math.floor((this.end_time - new Date()) / 1000) + 60);
     return time_left.toLocaleString('en-GB', {hour: '2-digit', minute: '2-digit'});
   }
 
   tick() {
     this.setState({
-      started: new Date() > Config.hack_start_time,
+      started: new Date() > this.start_time,
       time_left: this.get_time_left()
     });
   }
 
   componentDidMount() {
-    this.intervalID = setInterval(() => this.tick(),2000);
+    this.socket = this.context;
+    this.socket.on('hacking time', (msg) => {
+      this.start_time = new Date(msg.start);
+      this.end_time = new Date(msg.end);
+      if (this.intervalID !== null) {
+        clearInterval(this.intervalID);
+      }
+      this.intervalID = setInterval(() => this.tick(), 2000);
+    });
+    this.socket.on('disconnect', () => {
+      this.setState({
+        started: false
+      });
+      if (this.intervalID !== null) {
+        clearInterval(this.intervalID);
+      }
+    });
+    this.socket.emit('request hacking time', '');
   }
 
   componentWillUnmount() {
-    clearInterval(this.intervalID);
+    if (this.intervalID !== null) {
+      clearInterval(this.intervalID);
+    }
   }
 
   render() {
@@ -40,5 +59,7 @@ class Hack extends Component {
     );
   }
 }
+
+Hack.contextType = SocketContext
 
 export default Hack;

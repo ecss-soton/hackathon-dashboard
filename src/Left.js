@@ -5,6 +5,7 @@ import { Config } from './Config';
 import Event from './Event';
 
 import Content from './Content';
+import SocketContext from './SocketContext';
 
 class Left extends Component {
   constructor(props) {
@@ -15,13 +16,14 @@ class Left extends Component {
     this.current_page = `/${this.props.location.pathname.split('/')[2]}`;
   }
 
-  change_page() {
-    var next_page = null;
-    let i = Config.pages.indexOf(this.current_page);
-    if (i < Config.pages.length - 1) {
-      next_page = Config.pages[i + 1];
-    } else {
-      next_page = Config.pages[0];
+  change_page(next_page = null) {
+    if (next_page === null) {
+      let i = Config.pages.indexOf(this.current_page);
+      if (i < Config.pages.length - 1) {
+        next_page = Config.pages[i + 1];
+      } else {
+        next_page = Config.pages[0];
+      }
     }
     this.current_page = next_page;
     next_page = `/left${next_page}`;
@@ -29,7 +31,18 @@ class Left extends Component {
   }
 
   componentDidMount() {
-    this.interval_id = setInterval(() => this.change_page(), 1000);
+    this.interval_id = setInterval(() => this.change_page(), 20000);
+    this.socket = this.context;
+    this.socket.on('connect', () => {
+      document.getElementById('offline').style.visibility = 'hidden';
+      clearInterval(this.interval_id);
+  });
+    this.socket.on('disconnect', () => {
+      document.getElementById('offline').style.visibility = 'visible';
+      this.interval_id = setInterval(() => this.change_page(), 20000);
+    });
+    this.socket.on('change page', () => this.change_page());
+    this.socket.on('left page', (msg) => this.change_page(msg));
   }
 
   render() {
@@ -51,10 +64,13 @@ class Left extends Component {
               Slack: <a href="https://campus-hack19.slack.com">campus-hack19.slack.com</a>
             </li>
           </ul>
+          <small id="offline" className="text-muted m-3">Offline</small>
         </footer>
       </div>
     );
   }
 }
+
+Left.contextType = SocketContext;
 
 export default Left;

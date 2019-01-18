@@ -8,7 +8,7 @@ import Right from './Right';
 import * as io from 'socket.io-client';
 import SocketContext from './SocketContext';
 
-const socket = io('http://localhost:3001')
+const socket = io('//localhost:3001')
 
 class App extends Component {
   componentDidMount() {
