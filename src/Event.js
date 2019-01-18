@@ -10,14 +10,19 @@ class Event extends Component {
     };
   }
 
+  on_disconnect() {
+    this.setState({
+      event: Config.event
+    });
+  }
+
   componentDidMount() {
     this.socket = this.context
     this.socket.on('event', (msg) => this.setState({
       event: msg
     }));
-    this.socket.on('disconnect', () => this.setState({
-      event: Config.event
-    }));
+    this.socket.on('disconnect', () => this.on_disconnect());
+    this.socket.on('error', () => this.on_disconnect())
     this.socket.emit('request event', '');
   }
 

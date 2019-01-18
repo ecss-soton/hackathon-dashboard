@@ -24,6 +24,15 @@ class Hack extends Component {
     });
   }
 
+  on_disconnect() {
+    this.setState({
+      started: false
+    });
+    if (this.intervalID !== null) {
+      clearInterval(this.intervalID);
+    }
+  }
+
   componentDidMount() {
     this.socket = this.context;
     this.socket.on('hacking time', (msg) => {
@@ -34,14 +43,8 @@ class Hack extends Component {
       }
       this.intervalID = setInterval(() => this.tick(), 2000);
     });
-    this.socket.on('disconnect', () => {
-      this.setState({
-        started: false
-      });
-      if (this.intervalID !== null) {
-        clearInterval(this.intervalID);
-      }
-    });
+    this.socket.on('disconnect', () => this.on_disconnect());
+    this.socket.on('error', () => this.on_disconnect());
     this.socket.emit('request hacking time', '');
   }
 

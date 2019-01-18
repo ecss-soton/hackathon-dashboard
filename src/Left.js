@@ -30,6 +30,11 @@ class Left extends Component {
     this.props.history.push(next_page);
   }
 
+  on_disconnect() {
+    document.getElementById('offline').style.visibility = 'visible';
+    this.interval_id = setInterval(() => this.change_page(), 20000);
+  }
+
   componentDidMount() {
     this.interval_id = setInterval(() => this.change_page(), 20000);
     this.socket = this.context;
@@ -37,10 +42,8 @@ class Left extends Component {
       document.getElementById('offline').style.visibility = 'hidden';
       clearInterval(this.interval_id);
     });
-    this.socket.on('disconnect', () => {
-      document.getElementById('offline').style.visibility = 'visible';
-      this.interval_id = setInterval(() => this.change_page(), 20000);
-    });
+    this.socket.on('disconnect', () => this.on_disconnect());
+    this.socket.on('error', () => this.on_disconnect());
     this.socket.on('change page', () => this.change_page());
     this.socket.on('left page', (msg) => this.change_page(msg));
   }

@@ -11,16 +11,9 @@ import Admin from './Admin';
 import * as io from 'socket.io-client';
 import SocketContext from './SocketContext';
 
-const socket = io(Config.backend, {transports: ['websocket']})
+const socket = io(Config.backend);
 
 class App extends Component {
-  componentDidMount() {
-    socket.emit('chat message', 'hello');
-    socket.on('chat message', function(msg) {
-      console.log('message received: ' + msg);
-    })
-  }
-
   render() {
     return (
       <SocketContext.Provider value={socket}>
