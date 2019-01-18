@@ -11,7 +11,7 @@ import Admin from './Admin';
 import * as io from 'socket.io-client';
 import SocketContext from './SocketContext';
 
-const socket = io(Config.backend)
+const socket = io(Config.backend, {transports: ['websocket']})
 
 class App extends Component {
   componentDidMount() {
