@@ -45,6 +45,8 @@ class Hack extends Component {
     });
     this.socket.on('disconnect', () => this.on_disconnect());
     this.socket.on('error', () => this.on_disconnect());
+    this.socket.on('connect_error', () => this.on_disconnect());
+    this.socket.on('connect_timeout', () => this.on_disconnect());
     this.socket.emit('request hacking time', '');
   }
 
