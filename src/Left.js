@@ -44,6 +44,7 @@ class Left extends Component {
     });
     this.socket.on('disconnect', () => this.on_disconnect());
     this.socket.on('error', () => this.on_disconnect());
+    this.socket.on('connect_error', () => this.on_disconnect());
     this.socket.on('change page', () => this.change_page());
     this.socket.on('left page', (msg) => this.change_page(msg));
   }
