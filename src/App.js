@@ -7,6 +7,7 @@ import { HashRouter, Route, Switch } from "react-router-dom";
 import Left from './Left';
 import Right from './Right';
 import Admin from './Admin';
+import Combined from './Combined';
 
 import * as io from 'socket.io-client';
 import SocketContext from './SocketContext';
@@ -22,6 +23,7 @@ class App extends Component {
             <Route path='/left' component={ Left } />
             <Route path='/right' component={ Right } />
             <Route path='/admin' component={ Admin } />
+            <Route path='/' exact component={ Combined } />
           </Switch>
         </HashRouter>
       </SocketContext.Provider>
