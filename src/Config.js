@@ -6,5 +6,5 @@ if (backend == null || backend === "") {
 export const Config = {
   backend: backend,
   event: 'CampusHack19',
-  pages: ['/shedule', '/map', '/sponsors']
+  pages: ['/schedule', '/map', '/sponsors']
 };

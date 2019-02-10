@@ -1,13 +1,13 @@
 import React, { Component } from 'react';
 
-class Shedule extends Component {
+class Schedule extends Component {
   render() {
     return (
       <div>
-        Shedule
+        Schedule
       </div>
     );
   }
 }
 
-export default Shedule;
+export default Schedule;
