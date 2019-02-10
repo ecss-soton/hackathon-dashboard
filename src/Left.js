@@ -60,7 +60,7 @@ class Left extends Component {
               <a href="https://society.ecs.soton.ac.uk/campus-hack19/">society.ecs.soton.ac.uk/campus-hack19/</a>
             </li>
             <li>
-              Slack: <a href="https://campus-hack19.slack.com">campus-hack19.slack.com</a>
+              Slack: <a href="https://campushack19.slack.com">campushack19.slack.com</a>
             </li>
           </ul>
           <small id="offline" className="text-muted m-3">Offline</small>
