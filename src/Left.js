@@ -4,30 +4,16 @@ import { Config } from './Config';
 
 import Event from './Event';
 
-import Content from './Content';
 import SocketContext from './SocketContext';
 
 class Left extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      timeout: false
-    };
-    this.current_page = `/${this.props.location.pathname.split('/')[2]}`;
-  }
+  state = {
+    timeout: false,
+    current_page: 0
+  };
 
-  change_page(next_page = null) {
-    if (next_page === null) {
-      let i = Config.pages.indexOf(this.current_page);
-      if (i < Config.pages.length - 1) {
-        next_page = Config.pages[i + 1];
-      } else {
-        next_page = Config.pages[0];
-      }
-    }
-    this.current_page = next_page;
-    next_page = `/left${next_page}`;
-    this.props.history.push(next_page);
+  change_page() {
+    this.setState(prev => ({ current_page: ++prev.current_page % Config.pages.length }))
   }
 
   on_disconnect() {
@@ -58,6 +44,7 @@ class Left extends Component {
   }
 
   render() {
+    const PageContent = Config.pages[this.state.current_page];
     return (
       <div className="main">
         <header className="topbar bg-ch">
@@ -66,7 +53,7 @@ class Left extends Component {
           </a>
           <Event />
         </header>
-        <Content screen="left"/>
+        <PageContent />
         <footer>
           <ul className="m-3 list-unstyled d-inline-flex">
             <li className="mr-5">
