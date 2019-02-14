@@ -1,15 +1,16 @@
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 
 import { Config } from './Config';
 
-import Event from './Event';
-
 import SocketContext from './SocketContext';
+
+import Typography from '@material-ui/core/Typography';
 
 class Left extends Component {
   state = {
     timeout: false,
-    current_page: 0
+    current_page: 0,
+    online: false
   };
 
   change_page() {
@@ -17,7 +18,7 @@ class Left extends Component {
   }
 
   on_disconnect() {
-    document.getElementById('offline').style.visibility = 'visible';
+    this.setState({ online: false })
     if (this.interval_id === null) {
       this.interval_id = setInterval(() => this.change_page(), 20000);
       console.log('timer starts');
@@ -30,7 +31,7 @@ class Left extends Component {
     console.log('timer starts');
     this.socket = this.context;
     this.socket.on('connect', () => {
-      document.getElementById('offline').style.visibility = 'hidden';
+      this.setState({ online: true })
       clearInterval(this.interval_id);
       this.interval_id = null;
       console.log('timer ends');
@@ -46,26 +47,10 @@ class Left extends Component {
   render() {
     const PageContent = Config.pages[this.state.current_page];
     return (
-      <div className="main">
-        <header className="topbar bg-ch">
-          <a className="navbar-brand" href="https://society.ecs.soton.ac.uk/campus-hack19/">
-            <img src="/favicon.ico" height="50" alt="" />
-          </a>
-          <Event />
-        </header>
+      <Fragment>
         <PageContent />
-        <footer>
-          <ul className="m-3 list-unstyled d-inline-flex">
-            <li className="mr-5">
-              <a href="https://society.ecs.soton.ac.uk/campus-hack19/">society.ecs.soton.ac.uk/campus-hack19/</a>
-            </li>
-            <li>
-              Slack: <a href="https://campushack19.slack.com">campushack19.slack.com</a>
-            </li>
-          </ul>
-          <small id="offline" className="text-muted m-3">Offline</small>
-        </footer>
-      </div>
+        <Typography>{this.state.online ? 'Online' : 'Offline' }</Typography>
+      </Fragment>
     );
   }
 }
