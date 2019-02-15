@@ -17,9 +17,10 @@ class Schedule extends Component {
   render() {
     const times = [...Array(24).keys()];
 
+
     return (
       <Paper>
-        <Table>
+        <Table padding='dense'>
           <TableHead>
             <TableRow>
               <TableCell>Schedule</TableCell>

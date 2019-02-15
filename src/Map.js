@@ -14,6 +14,7 @@ class Map extends Component {
             lng: -1.395643
           }}
           defaultZoom={15}
+
         >
         <Chip label="B16" lat={50.937684} lng={-1.395643}/>
         </GoogleMapReact>

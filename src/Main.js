@@ -9,7 +9,6 @@ import Toolbar from '@material-ui/core/Toolbar';
 import IconButton from '@material-ui/core/IconButton';
 import MenuIcon from '@material-ui/icons/Menu';
 import SwipeableDrawer from '@material-ui/core/SwipeableDrawer';
-import Button from '@material-ui/core/Button';
 
 import campusHackLogo from './campushack19transparent.png'
 
@@ -35,10 +34,13 @@ const styles = (theme) => ({
     marginLeft: 'auto'
   },
   parent: {
-    maxHeight: '80%',
-    maxWidth: '80%',
+    marginTop: '-2.5%',
+    maxHeight: '90%',
+    maxWidth: '90%',
     overflowY: 'auto',
     padding: '10px'
+
+    
   },
   logo: {
     height: theme.mixins.toolbar.minHeight,
@@ -59,7 +61,7 @@ class Main extends Component {
   };
 
   render() {
-    const { appBarButton, menuButton, background, parent, logo } = this.props.classes;
+    const { menuButton, background, parent, logo } = this.props.classes;
 
     return (
       <Fragment>
@@ -73,7 +75,6 @@ class Main extends Component {
               className={logo}
               alt='campushack19 logo'
             />
-            <Button onClick={this.props.toggleTheme} className={appBarButton}>Toggle Theme</Button>
           </Toolbar>
         </AppBar>
         <SwipeableDrawer
@@ -81,7 +82,7 @@ class Main extends Component {
           onClose={this.toggleDrawer.bind(this, false)}
           onOpen={this.toggleDrawer.bind(this, true)}
         >
-          <DrawerContent setContent={this.setContent.bind(this)} />
+          <DrawerContent setContent={this.setContent.bind(this)} toggleTheme={this.props.toggleTheme} />
         </SwipeableDrawer>
         <div className={background}>
           <div className={parent}>
