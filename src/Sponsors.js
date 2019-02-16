@@ -12,8 +12,8 @@ import { Config } from './Config';
 
 const styles = {
   card: {
-    maxWidth: 345,
-    minHeight: 530,
+    maxWidth: 355,
+    minHeight: 490,
     margin: 20,
     textAlign: 'center'
   },
@@ -21,12 +21,14 @@ const styles = {
     display: 'flex',
     justifyContent: 'space-between',
     flexDirection: 'column',
-    minHeight: 'calc(100% - 140px)'
+    minHeight: 'calc(100% - 100px)'
   },
   media: {
     // ⚠️ object-fit is not supported by IE 11.
     objectFit: 'contain',
-    borderRadius: 4
+    borderRadius: 4,
+    padding: 10,
+    width: 'calc(100% - 20px)'
   },
   sponsorContainer: {
     display: 'flex',
@@ -36,6 +38,11 @@ const styles = {
   },
   sectionTitle: {
     textAlign: 'center'
+  },
+  cardActions: {
+    margin: '30px 10px',
+    display: 'flex',
+    justifyContent: 'space-evenly'
   }
 };
 
@@ -44,11 +51,11 @@ class Sponsors extends Component {
     let sponsorIndex = 0;
     return (
       <Fragment>
-        <Typography variant='h3' className={this.props.classes.sectionTitle}>Premium Hackathon Sponsors:</Typography>
+        <Typography variant='h3' className={this.props.classes.sectionTitle}>Premium Sponsors:</Typography>
         <div className={this.props.classes.sponsorContainer}>
           { Config.sponsors.premium.map(sponsor => <this.sponsorCard classes={this.props.classes} company={sponsor} key={`sponsorIndex${sponsorIndex++}`}/>) }
         </div>
-        <Typography variant='h3' className={this.props.classes.sectionTitle}>Standard Hackathon Sponsors:</Typography>
+        <Typography variant='h3' className={this.props.classes.sectionTitle}>Standard Sponsors:</Typography>
         <div className={this.props.classes.sponsorContainer}>
           { Config.sponsors.standard.map(sponsor => <this.sponsorCard classes={this.props.classes} company={sponsor} key={`sponsorIndex${sponsorIndex++}`}/>) }
         </div>
@@ -63,8 +70,8 @@ class Sponsors extends Component {
           component="img"
           alt={`${company.name} logo`}
           className={classes.media}
-          height="140"
-          src={company.links.logo}
+          height="100"
+          image={company.links.logo}
           title={`${company.name} logo`}
           style={{ backgroundColor: 'white' }}
         />
@@ -73,7 +80,7 @@ class Sponsors extends Component {
             <Typography gutterBottom variant="h5" component="h2">{company.name}</Typography>
             <Typography component="p">{company.description}</Typography>
           </CardContent>
-          <CardActions className={classes.cardActions} style={{ margin: '10px', display: 'flex', justifyContent: 'space-evenly' }}>
+          <CardActions className={classes.cardActions}>
             <Button size="small" color="secondary" href={company.links.opportunities}>
               Careers
             </Button>

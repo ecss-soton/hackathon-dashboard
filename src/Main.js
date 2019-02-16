@@ -1,7 +1,6 @@
 import React, { Component, Fragment } from 'react';
 
-import Landing from './Landing';
-import DrawerContent from './DrawerContent';
+import { Redirect, withRouter} from 'react-router-dom';
 
 import { withStyles } from '@material-ui/core/styles';
 import AppBar from '@material-ui/core/AppBar';
@@ -10,6 +9,7 @@ import IconButton from '@material-ui/core/IconButton';
 import MenuIcon from '@material-ui/icons/Menu';
 import SwipeableDrawer from '@material-ui/core/SwipeableDrawer';
 
+import DrawerContent from './DrawerContent';
 import campusHackLogo from './campushack19transparent.png'
 
 const styles = (theme) => ({
@@ -57,7 +57,7 @@ const styles = (theme) => ({
 class Main extends Component {
   state = {
     drawerOpen: false,
-    content: Landing,
+    redirect: null
   };
 
   render() {
@@ -65,6 +65,7 @@ class Main extends Component {
 
     return (
       <Fragment>
+        {this.state.redirect && this.state.redirect !== this.props.location.pathname && <Redirect push from={`^[\\${this.state.redirect}]`} to={this.state.redirect} />}
         <AppBar position='static'>
           <Toolbar>
             <IconButton className={menuButton} color='inherit' aria-label='Menu' onClick={this.toggleDrawer.bind(this, true)}>
@@ -86,7 +87,7 @@ class Main extends Component {
         </SwipeableDrawer>
         <div className={background}>
           <div className={parent}>
-            <this.state.content />
+            <this.props.content />
           </div>
         </div>
       </Fragment>
@@ -97,9 +98,9 @@ class Main extends Component {
     this.setState({ drawerOpen });
   }
 
-  setContent(content) {
-    this.setState({ content, drawerOpen: false });
+  setContent(newPage) {
+    this.setState({ redirect: newPage, drawerOpen: false })
   }
 }
 
-export default withStyles(styles)(Main);
+export default withRouter(withStyles(styles)(Main));

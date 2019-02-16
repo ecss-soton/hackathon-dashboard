@@ -1,5 +1,4 @@
 import Schedule from "./Schedule";
-import Map from "./Map";
 import Sponsors from "./Sponsors";
 
 import ScheduleIcon from '@material-ui/icons/Schedule';
@@ -15,20 +14,15 @@ if (backend == null || backend === "") {
 export const Config = {
   backend: backend,
   event: 'CampusHack19',
-  pages: [Schedule, Map, Sponsors],
+  pages: [Schedule, Sponsors],
   pagesWithIcons: [
     {
-      content: Schedule,
+      content: '/schedule',
       Icon: ScheduleIcon,
       name: 'Schedule'
     },
-    // {
-    //   content: Map,
-    //   Icon: MapIcon,
-    //   name: 'Map'
-    // },
     {
-      content: Sponsors,
+      content: '/sponsors',
       Icon: SponsorIcon,
       name: 'Sponsors'
     }

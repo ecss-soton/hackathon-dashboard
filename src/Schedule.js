@@ -22,16 +22,16 @@ class Schedule extends Component {
       <Paper>
         <Table padding='dense'>
           <TableHead>
-            <TableRow>
-              <TableCell>Schedule</TableCell>
-              { Config.schedule.map(day => <TableCell>{day.name}</TableCell>) }
+            <TableRow key='headerrow'>
+              <TableCell key='tableTitle'>Schedule</TableCell>
+              { Config.schedule.map(day => <TableCell key={day.name} >{day.name}</TableCell>) }
             </TableRow>
           </TableHead>
           <TableBody>
             { times.map(time => (
-              <TableRow>
-                <TableCell component="th" scope="row">{prettyPrintTime(time)}</TableCell>
-                { Config.schedule.map(day => <TableCell>{day.timings[time] || ''}</TableCell>)}
+              <TableRow key={`row${time}`}>
+                <TableCell key={`time${time}`}component="th" scope="row">{prettyPrintTime(time)}</TableCell>
+                { Config.schedule.map(day => <TableCell key={day.name + time}>{day.timings[time] || ''}</TableCell>)}
               </TableRow>
             ))}
           </TableBody>

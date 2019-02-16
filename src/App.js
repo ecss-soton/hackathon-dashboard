@@ -1,19 +1,16 @@
 import React, { Component } from 'react';
 import './App.css';
 
-import { Config } from './Config';
-
 import { BrowserRouter, Route, Switch } from "react-router-dom";
 import Left from './Left';
 import Right from './Right';
-import Admin from './Admin';
 import Main from './Main';
+import Display from './Display';
 
-import * as io from 'socket.io-client';
-import SocketContext from './SocketContext';
 import { MuiThemeProvider, createMuiTheme } from '@material-ui/core';
-
-const socket = io(Config.backend);
+import Landing from './Landing';
+import Sponsors from './Sponsors';
+import Schedule from './Schedule';
 
 const lightTheme = createMuiTheme({
   palette: {
@@ -23,6 +20,9 @@ const lightTheme = createMuiTheme({
     secondary: {
       main: '#24a4db'
     }
+  },
+  typography: {
+    useNextVariants: true,
   }
 });
 
@@ -35,44 +35,41 @@ const darkTheme = createMuiTheme({
     secondary: {
       main: '#bd2031'
     }
+  },
+  typography: {
+    useNextVariants: true,
   }
 });
 
 class App extends Component {
   state = {
-    currentTheme: null
+    currentTheme: this.retreiveTheme()
   }
   render() {
-    if (this.state.currentTheme === null) {
-      this.retreiveTheme();
-    }
     return (
-      <SocketContext.Provider value={socket}>
-        <BrowserRouter>
-          <MuiThemeProvider theme={this.state.currentTheme || lightTheme}>
-            <Switch>
-              <Route path='/left' component={ Left } />
-              <Route path='/right' component={ Right } />
-              <Route path='/admin' component={ Admin } />
-              <Route path='/' exact render={() => <Main toggleTheme={this.toggleTheme.bind(this)} />} />
-            </Switch>
-          </MuiThemeProvider>
-        </BrowserRouter>
-      </SocketContext.Provider>
+      <BrowserRouter>
+        <MuiThemeProvider theme={this.state.currentTheme || lightTheme}>
+          <Switch>
+            <Route path='/left' render={() => <Display component={Left } />} />
+            <Route path='/right' render={() => <Display component={Right } />} />
+            <Route path='/sponsors'  render={() => <Main toggleTheme={this.toggleTheme.bind(this)} content={Sponsors}/>} />
+            <Route path='/schedule'  render={() => <Main toggleTheme={this.toggleTheme.bind(this)} content={Schedule}/>} />
+            <Route path='/' exact render={() => <Main toggleTheme={this.toggleTheme.bind(this)} content={Landing}/>} />
+          </Switch>
+        </MuiThemeProvider>
+      </BrowserRouter>
     );
   }
 
-  async retreiveTheme() {
+  retreiveTheme() {
     switch(localStorage.currentTheme) {
       case 'dark':
-        this.setState({ currentTheme: darkTheme })
-        break;
+        return darkTheme;
       default:
         localStorage.currentTheme = 'light';
       // eslint-disable-next-line no-fallthrough
       case 'light':
-        this.setState({ currentTheme: lightTheme });
-        break;
+        return lightTheme;
     }
   }
 
