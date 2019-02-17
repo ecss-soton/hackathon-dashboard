@@ -15,7 +15,7 @@ function prettyPrintTime(time) {
 
 class Schedule extends Component {
   render() {
-    const times = [...Array(24).keys()];
+    const times = [12,1,2,3,4,5,6,7,8,9,10,11];
 
 
     return (
@@ -24,13 +24,13 @@ class Schedule extends Component {
           <TableHead>
             <TableRow key='headerrow'>
               <TableCell key='tableTitle'>Schedule</TableCell>
-              { Config.schedule.map(day => <TableCell key={day.name} >{day.name}</TableCell>) }
+              { Config.schedule.map(day => <TableCell key={day.name}>{day.name}</TableCell>) }
             </TableRow>
           </TableHead>
           <TableBody>
             { times.map(time => (
               <TableRow key={`row${time}`}>
-                <TableCell key={`time${time}`}component="th" scope="row">{prettyPrintTime(time)}</TableCell>
+                <TableCell key={`time${time}`} component='th' scope='row'>{prettyPrintTime(time)}</TableCell>
                 { Config.schedule.map(day => <TableCell key={day.name + time}>{day.timings[time] || ''}</TableCell>)}
               </TableRow>
             ))}

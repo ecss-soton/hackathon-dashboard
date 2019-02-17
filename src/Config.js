@@ -29,27 +29,32 @@ export const Config = {
   ],
   schedule: [
     {
-      'name': 'Saturday',
+      'name': 'Saturday PM',
       'timings': {
         11: 'Sign in and team setup',
         12: 'Welcome presentations',
-        13: 'Hackathon starts!',
-        15: 'Lunch + Challenge 1',
-        19: 'Challenge 2',
-        20: 'Pizza'
+        1: 'Hackathon starts!',
+        3: 'Lunch + Challenge 1',
+        7: 'Challenge 2',
+        8: 'Pizza'
       }
     },
     {
-      'name': 'Sunday',
+      'name': 'Sunday AM',
       'timings': {
-        0: 'Challenge 3',
         1: 'Midnight Maccies',
         4: 'Challenge 4',
         7: 'Challenge 5',
         11: 'Self serve breakfast/brunch',
-        13: 'Hackathon finishes!',
-        14: 'Group presentations',
-        15: 'Awards ceremony'
+        12: 'Challenge 3'
+      }
+    },
+    {
+      'name': 'Sunday PM',
+      'timings': {
+        1: 'Hackathon finishes!',
+        2: 'Group presentations',
+        3: 'Awards ceremony'
       }
     }
   ],
