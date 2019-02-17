@@ -17,7 +17,7 @@ class Event extends Component {
   }
 
   componentDidMount() {
-    this.socket = this.context
+    this.socket = this.context;
     this.socket.on('event', (msg) => this.setState({
       event: msg
     }));
@@ -37,6 +37,6 @@ class Event extends Component {
   }
 }
 
-Event.contextType = SocketContext
+Event.contextType = SocketContext;
 
 export default Event;

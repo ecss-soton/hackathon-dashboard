@@ -11,7 +11,7 @@ import ToggleOn from '@material-ui/icons/ToggleOn';
 import ToggleOff from '@material-ui/icons/ToggleOff';
 import Home from '@material-ui/icons/Home';
 
-import { Config } from './Config' 
+import { Config } from './Config';
 
 const styles = {
   list: {
@@ -40,7 +40,7 @@ function DrawerContent({ setContent, toggleTheme, classes}) {
         <Divider />
         <ListItem button onClick={toggleTheme} key={`menuIndex${menuIndex}`}>
           <ListItemIcon>{localStorage.currentTheme === 'dark' ? <ToggleOn /> : <ToggleOff />}</ListItemIcon>
-          <ListItemText primary="Dark Theme" />
+          <ListItemText primary='Dark Theme' />
         </ListItem>
       </List>
     </div>

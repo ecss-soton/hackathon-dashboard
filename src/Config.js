@@ -1,12 +1,13 @@
-import Schedule from "./Schedule";
-import Sponsors from "./Sponsors";
+import Schedule from './Schedule';
+import Sponsors from './Sponsors';
 
 import ScheduleIcon from '@material-ui/icons/Schedule';
 //import MapIcon from '@material-ui/icons/Map';
 import SponsorIcon from '@material-ui/icons/LocalPizza';
 
+// eslint-disable-next-line no-undef
 let backend = process.env.REACT_APP_BACKEND;
-if (backend == null || backend === "") {
+if (backend == null || backend === '') {
   backend = '//localhost:3001';
 }
 

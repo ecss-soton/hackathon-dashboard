@@ -64,7 +64,7 @@ function Landing(props) {
       <Typography>Some suggestions for social problems that you could solve with technology can be found at <Link to='https://www.globalgoals.org/'>https://www.globalgoals.org/</Link>. Additionally, usage of social media for disaster relief is another great area of interest.</Typography>
       <Typography variant='h6' style={{ marginTop: 20, marginBottom: 20 }}><b>Remember the theme is advisory only, so you are welcome to do whatever you want if you already have an idea.</b></Typography>
       <Typography>Those attending the hackathon please remember that sign in starts from 11am on the Saturday and will close at 12 unless you contact the page to inform us you will be late. Also, you must join the slack <Link to='https://join.slack.com/t/campushack19/signup'>https://join.slack.com/t/campushack19/signup</Link> using your university email - those who have already assembled teams feel free to create channels.</Typography>
-      <Typography>Remember teams will be finalised on the day so those who don't have a team yet do not panic! The Slack is the perfect opportunity to find others and form a team. Max team size is recommended to be 5 (and there will be only 5 prizes available).</Typography>
+      <Typography>Remember teams will be finalised on the day so those who don&apos;t have a team yet do not panic! The Slack is the perfect opportunity to find others and form a team. Max team size is recommended to be 5 (and there will be only 5 prizes available).</Typography>
     </Paper>
   );
 }

@@ -9,10 +9,10 @@ function Content() {
   let router_basename = `/${this.props.screen}`;
   return (
     <HashRouter basename={router_basename}>
-      <div className="content">
-        <Route path="/schedule" component={Schedule} />
-        <Route path="/map" component={Map} />
-        <Route path="/sponsors" component={Sponsors} />
+      <div className='content'>
+        <Route path='/schedule' component={Schedule} />
+        <Route path='/map' component={Map} />
+        <Route path='/sponsors' component={Sponsors} />
       </div>
     </HashRouter>
   );

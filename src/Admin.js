@@ -21,15 +21,15 @@ class Admin extends Component {
 
   render() {
     return (
-      <div className="container">
+      <div className='container'>
         <form>
-          <div className="form-group row">
-            <label htmlFor="event" className="col-sm-2 col-form-label">Event</label>
-            <div className="col-sm-7">
-              <input className="form-control" id="event" name="event" defaultValue="CampusHack19" />
+          <div className='form-group row'>
+            <label htmlFor='event' className='col-sm-2 col-form-label'>Event</label>
+            <div className='col-sm-7'>
+              <input className='form-control' id='event' name='event' defaultValue='CampusHack19' />
             </div>
-            <div className="col-sm-2">
-              <button className="btn btn-primary" onClick={this.set_event}>Set</button>
+            <div className='col-sm-2'>
+              <button className='btn btn-primary' onClick={this.set_event}>Set</button>
             </div>
           </div>
         </form>

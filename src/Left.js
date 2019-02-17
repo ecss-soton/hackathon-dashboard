@@ -14,11 +14,11 @@ class Left extends Component {
   };
 
   change_page() {
-    this.setState(prev => ({ current_page: ++prev.current_page % Config.pages.length }))
+    this.setState(prev => ({ current_page: ++prev.current_page % Config.pages.length }));
   }
 
   on_disconnect() {
-    this.setState({ online: false })
+    this.setState({ online: false });
     if (this.interval_id === null) {
       this.interval_id = setInterval(() => this.change_page(), 20000);
       console.log('timer starts');
@@ -31,7 +31,7 @@ class Left extends Component {
     console.log('timer starts');
     this.socket = this.context;
     this.socket.on('connect', () => {
-      this.setState({ online: true })
+      this.setState({ online: true });
       clearInterval(this.interval_id);
       this.interval_id = null;
       console.log('timer ends');

@@ -10,7 +10,7 @@ import MenuIcon from '@material-ui/icons/Menu';
 import SwipeableDrawer from '@material-ui/core/SwipeableDrawer';
 
 import DrawerContent from './DrawerContent';
-import campusHackLogo from './campushack19transparent.png'
+import campusHackLogo from './campushack19transparent.png';
 
 const styles = (theme) => ({
   background: {
@@ -99,7 +99,7 @@ class Main extends Component {
   }
 
   setContent(newPage) {
-    this.setState({ redirect: newPage, drawerOpen: false })
+    this.setState({ redirect: newPage, drawerOpen: false });
   }
 }
 

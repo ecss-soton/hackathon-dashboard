@@ -67,27 +67,27 @@ class Sponsors extends Component {
     return (
       <Card className={classes.card}>
         <CardMedia
-          component="img"
+          component='img'
           alt={`${company.name} logo`}
           className={classes.media}
-          height="100"
+          height='100'
           image={company.links.logo}
           title={`${company.name} logo`}
           style={{ backgroundColor: 'white' }}
         />
         <div className={classes.content}>
           <CardContent style={{ margin: '10px' }}>
-            <Typography gutterBottom variant="h5" component="h2">{company.name}</Typography>
-            <Typography component="p">{company.description}</Typography>
+            <Typography gutterBottom variant='h5' component='h2'>{company.name}</Typography>
+            <Typography component='p'>{company.description}</Typography>
           </CardContent>
           <CardActions className={classes.cardActions}>
-            <Button size="small" color="secondary" href={company.links.opportunities}>
+            <Button size='small' color='secondary' href={company.links.opportunities}>
               Careers
             </Button>
-            <Button size="small" color="secondary" href={company.links.website}>
+            <Button size='small' color='secondary' href={company.links.website}>
               Website
             </Button>
-            <Button size="small" color="secondary" href={company.links.ecss}>
+            <Button size='small' color='secondary' href={company.links.ecss}>
               ECSS Page
             </Button>
           </CardActions>

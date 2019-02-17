@@ -13,7 +13,7 @@ class Right extends Component {
   };
 
   change_page() {
-    this.setState(prev => ({ current_page: ++prev.current_page % Config.pages.length }))
+    this.setState(prev => ({ current_page: ++prev.current_page % Config.pages.length }));
   }
 
   componentDidMount() {
@@ -47,6 +47,6 @@ class Right extends Component {
   }
 }
 
-Right.contextType = SocketContext
+Right.contextType = SocketContext;
 
 export default Right;
