@@ -6,6 +6,7 @@ import TableCell from '@material-ui/core/TableCell';
 import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
+import Typography from '@material-ui/core/Typography';
 
 import { Config } from './Config';
 
@@ -16,7 +17,6 @@ function prettyPrintTime(time) {
 class Schedule extends Component {
   render() {
     const times = [12,1,2,3,4,5,6,7,8,9,10,11];
-
 
     return (
       <Paper>
@@ -36,6 +36,7 @@ class Schedule extends Component {
             ))}
           </TableBody>
         </Table>
+        <Typography style={{ textAlign: 'center' }}>Any dates or times shown are subject to change.</Typography>
       </Paper>
     );
   }
