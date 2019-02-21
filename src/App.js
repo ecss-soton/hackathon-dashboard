@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import './App.css';
 
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
-import Left from './Left';
 import Right from './Right';
 import Main from './Main';
 import Display from './Display';
@@ -11,6 +10,7 @@ import { MuiThemeProvider, createMuiTheme } from '@material-ui/core';
 import Landing from './Landing';
 import Sponsors from './Sponsors';
 import Schedule from './Schedule';
+import Github from './Github';
 import FloorPlan from './Floorplan';
 
 const lightTheme = createMuiTheme({
@@ -52,7 +52,7 @@ class App extends Component {
       <BrowserRouter>
         <MuiThemeProvider theme={this.state.currentTheme || lightTheme}>
           <Switch>
-            <Route path='/left' render={() => <Display component={Left } />} />
+            <Route path='/left' render={this.mainContent(Github)} />
             <Route path='/right' render={() => <Display component={Right } />} />
             <Route path='/sponsors'  render={this.mainContent(Sponsors)} />
             <Route path='/schedule'  render={this.mainContent(Schedule)} />
