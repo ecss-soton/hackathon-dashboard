@@ -45,9 +45,13 @@ export const Config = {
   ],
   schedule: [
     {
+      'name': 'Saturday AM',
+      'timings': {
+        11: 'Sign in and team setup'
+      }
+    },{
       'name': 'Saturday PM',
       'timings': {
-        11: 'Sign in and team setup',
         12: 'Welcome presentations',
         1: 'Hackathon starts!',
         3: 'Lunch + Challenge 1',
