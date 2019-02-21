@@ -16,6 +16,15 @@ class Right extends Component {
     this.setState(prev => ({ current_page: ++prev.current_page % Config.pages.length }));
   }
 
+  on_disconnect() {
+    document.getElementById('offline').style.visibility = 'visible';
+    if (this.interval_id === null) {
+      this.interval_id = setInterval(() => this.change_page(), 20000);
+      console.log('timer starts');
+    }
+    console.log('disconnected');
+  }
+
   componentDidMount() {
     this.interval_id = setInterval(() => this.change_page(), 20000);
     this.socket = this.context;
@@ -23,10 +32,10 @@ class Right extends Component {
       this.setState({ online: true });
       clearInterval(this.interval_id);
     });
-    this.socket.on('disconnect', () => {
-      this.setState({ online: false });
-      this.interval_id = setInterval(() => this.change_page(), 20000);
-    });
+    this.socket.on('disconnect', () => this.on_disconnect());
+    this.socket.on('error', () => this.on_disconnect());
+    this.socket.on('connect_error', () => this.on_disconnect());
+    this.socket.on('connect_timeout', () => this.on_disconnect());
     this.socket.on('change page', () => this.change_page());
     this.socket.on('right page', (msg) => this.change_page(msg));
 
