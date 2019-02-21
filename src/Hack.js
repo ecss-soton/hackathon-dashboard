@@ -65,6 +65,6 @@ class Hack extends Component {
   }
 }
 
-Hack.contextType = SocketContext
+Hack.contextType = SocketContext;
 
 export default Hack;
