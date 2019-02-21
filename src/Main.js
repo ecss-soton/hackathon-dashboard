@@ -50,7 +50,7 @@ const styles = (theme) => ({
     left: 0,
     right: 0,
     bottom: 0,
-    filter: theme.palette.type === 'dark' && 'brightness(0.15)'  
+    filter: theme.palette.type === 'dark' && 'invert(100%)'  
   },
 });
 
