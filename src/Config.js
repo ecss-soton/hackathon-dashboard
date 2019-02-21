@@ -2,8 +2,8 @@ import Schedule from './Schedule';
 import Sponsors from './Sponsors';
 
 import ScheduleIcon from '@material-ui/icons/Schedule';
-//import MapIcon from '@material-ui/icons/Map';
 import SponsorIcon from '@material-ui/icons/LocalPizza';
+import FloorPlanIcon from '@material-ui/icons/Map';
 
 // eslint-disable-next-line no-undef
 let backend = process.env.REACT_APP_BACKEND;
@@ -17,6 +17,11 @@ export const Config = {
   event: 'CampusHack19',
   pages: [Schedule, Sponsors],
   pagesWithIcons: [
+    {
+      content: '/floorplan',
+      Icon: FloorPlanIcon,
+      name: 'Floor Plan'
+    },
     {
       content: '/schedule',
       Icon: ScheduleIcon,

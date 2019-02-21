@@ -11,6 +11,7 @@ import { MuiThemeProvider, createMuiTheme } from '@material-ui/core';
 import Landing from './Landing';
 import Sponsors from './Sponsors';
 import Schedule from './Schedule';
+import FloorPlan from './Floorplan';
 
 const lightTheme = createMuiTheme({
   palette: {
@@ -53,13 +54,19 @@ class App extends Component {
           <Switch>
             <Route path='/left' render={() => <Display component={Left } />} />
             <Route path='/right' render={() => <Display component={Right } />} />
-            <Route path='/sponsors'  render={() => <Main toggleTheme={this.toggleTheme.bind(this)} content={Sponsors}/>} />
-            <Route path='/schedule'  render={() => <Main toggleTheme={this.toggleTheme.bind(this)} content={Schedule}/>} />
-            <Route path='/' exact render={() => <Main toggleTheme={this.toggleTheme.bind(this)} content={Landing}/>} />
+            <Route path='/sponsors'  render={this.mainContent(Sponsors)} />
+            <Route path='/schedule'  render={this.mainContent(Schedule)} />
+            <Route path='/github' render={this.mainContent(Github)} />
+            <Route path='/floorplan' render={this.mainContent(FloorPlan)} />
+            <Route path='/' exact render={this.mainContent(Landing)} />
           </Switch>
         </MuiThemeProvider>
       </BrowserRouter>
     );
+  }
+
+  mainContent(content) {
+    return () => <Main toggleTheme={this.toggleTheme.bind(this)} content={content}/>;
   }
 
   retrieveTheme() {
