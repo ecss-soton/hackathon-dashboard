@@ -37,7 +37,13 @@ function DrawerContent({ setContent, toggleTheme, classes}) {
             <ListItemText primary={name} />
           </ListItem>
         ))}
-        <Divider />
+        <Divider/>
+        {Config.usefulLinks.map(({ name, url }) => (
+          <ListItem button onClick={() => window.location.replace(url)} key={`menuIndex${menuIndex++}`}>
+            <ListItemText primary={name} />
+          </ListItem>
+        ))}
+        <Divider/>
         <ListItem button onClick={toggleTheme} key={`menuIndex${menuIndex}`}>
           <ListItemIcon>{localStorage.currentTheme === 'dark' ? <ToggleOn /> : <ToggleOff />}</ListItemIcon>
           <ListItemText primary='Dark Theme' />

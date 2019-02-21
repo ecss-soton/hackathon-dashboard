@@ -33,6 +33,16 @@ export const Config = {
       name: 'Sponsors'
     }
   ],
+  usefulLinks: [
+    {
+      name: 'Slack',
+      url: 'https://campushack19.slack.com'
+    },
+    {
+      name: 'Facebook',
+      url: 'https://www.facebook.com/events/2289596917737722/'
+    }
+  ],
   schedule: [
     {
       'name': 'Saturday PM',
